@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %} 
+<div class="col-sm-9">
+
+    <h2>        
+    {%  if regiester_done==true %} 
+        register successfully, Power BI report will be shared with the registered championx email address shortly
+    {% endif %}
+    {%  if regiester_done==false %} 
+        Invalid invitation code or code has been used
+    {% endif %}
+    </h2>
+    <!-- <p>Upload complelted</p> -->
+
+</div>
+
+{% endblock %}

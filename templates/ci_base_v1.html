@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="static/favicon-32x32.png" />
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body >
+    <!-- <nav style="background-color:rgb(58,89,98) !important" class="site-header sticky-top py-1"> -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#3a5962 !important" >
+        <a class="navbar-brand" href="#" style="color:rgb(255, 255, 255); font-size: 100%; font-weight: bold  !important">Powered by AID-X</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/" style="color:rgb(255, 255, 255); font-size: 100%; !important">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link"  href="/pre-test_rec" style="color:rgb(255, 255, 255); font-size: 100%; !important">Pre-Test Recommendation</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:rgb(255, 255, 255); font-size: 100%; !important">
+                Template
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: #fff; !important">
+                <a class="dropdown-item" href="/request_form_empty" style="color:rgb(58,89,98); font-size: 80%; !important">Request Form_Empty</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/request_form_demo" style="color:rgb(58,89,98); font-size: 80%; !important">Request Form_Demo</a>
+              </div>
+            </li>
+
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:rgb(255, 255, 255); font-size: 100%; !important">
+                Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: #fff; !important">
+                <a class="dropdown-item" href="/register" style="color:rgb(58,89,98); font-size: 80%; !important">Register</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/reset_pass" style="color:rgb(58,89,98); font-size: 80%; !important">Reset Password</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/forget_pass" style="color:rgb(58,89,98); font-size: 80%; !important">Forget Password</a>
+                <!-- <a class="dropdown-item" href="/downloadTest"  style="color:rgb(255, 255, 255); font-size: 100%; !important">File Management</a> -->
+                <!-- <div class="dropdown-divider"></div> -->
+                <!-- <a class="dropdown-item" href="/downloadMCT" style="color:rgb(58,89,98); font-size: 100%; !important">LEGO Input Tool Download</a> -->
+              </div>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:rgb(255, 255, 255); font-size: 100%; !important">
+                Links
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: #fff; !important">
+                <a class="dropdown-item" href="https://gbl-gen-app-legotest.azurewebsites.net/" style="color:rgb(58,89,98); font-size: 80%; !important">AID-X Hub</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="https://digitalbottletest.azurewebsites.net/" style="color:rgb(58,89,98); font-size: 80%; !important">AID-X EB/REB</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="http://gbl-mct-app-legotest.azurewebsites.net" style="color:rgb(58,89,98); font-size: 80%; !important">AID-X MCT</a>
+              </div>
+            </li>
+          </ul>
+
+          {% if current_user.is_authenticated %}
+            <a class="nav-link" href="/passwordreset" style="color:rgb(255, 255, 255); font-size: 100%; !important">Hi {{ current_user.id }}<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/logout" style="color:rgb(255, 255, 255); font-size: 100%; !important">Logout <span class="sr-only">(current)</span></a>
+          {% else %}
+            <a class="nav-link" href="/login" style="color:rgb(255, 255, 255); font-size: 100%; !important"> Please login <span class="sr-only">(current)</span></a>   
+          {% endif %}
+
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
+        </div>
+      </nav>
+
+
+
+
+      <div  style="background-color:rgb(255, 255, 255) !important" class="jumbotron">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-6 col-md-4">
+              <img src="static/logo_new.png" class="img-fluid" stype="max-width: 100% ; height: auto" alt="Responsive image">
+            </div>
+            <div class="col-md-auto">
+              <p style="color:rgb(220, 68, 5) ;  font-size: 200%; font-weight: bold !important" >Asset Integrity Digital Solution</p>
+            </div>
+            <div class="col-md-auto"></div>
+  
+          </div>
+        </div>
+      </div>
+    
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          {% block content %}
+          {% endblock %}
+        </div>
+        <hr>
+      </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %} 
+    <div class="col-sm-9">
+        <br>
+        {% if option=="check" %} 
+            <h4>Following projects already exsit in the database:</h2>
+        {% endif %}
+        {% if option=="addnew" %} 
+            <h4>Following projects already in the database were not changed:</h2>
+        {% endif %}
+        {% if option=="replace" %} 
+            <h4>Following projects already in the database were replaced by new data in excel:</h2>
+        {% endif %}
+
+
+        {% for projectid in projectid_exsit_list %}
+            <p>{{ projectid }}</p>
+        {% endfor %}
+
+        <br>
+        <br>
+        {% if option=="check" %} 
+            <h4>Following projects are new from excel:</h2>
+        {% endif %}
+        {% if option=="addnew" %} 
+            <h4>Following NEW projects from excel were uploaded to database:</h2>
+        {% endif %}
+        {% if option=="replace" %} 
+            <h4>Following NEW projects from excel were uploaded to database:</h2>
+        {% endif %}
+        {% for projectid in projectids_new %}
+            <p>{{ projectid }}</p>
+        {% endfor %}
+        <br>
+        <br>
+
+
+        <br>
+        <br>
+        {% if option=="check" %} 
+            <h4>Following projects are inactive:</h2>
+        {% endif %}
+        {% if option=="addnew" %} 
+            <h4>Following projects are inactive and not updated:</h2>
+        {% endif %}
+        {% if option=="replace" %} 
+            <h4>Following projects are inactive so cannot be updated:</h2>
+        {% endif %}
+        {% for projectid in projectid_inactive_conflict %}
+            <p>{{ projectid }}</p>
+        {% endfor %}
+        <br>
+        <br>
+
+
+        <div class="col-md-4">
+          <p><a class="btn btn-secondary" href="/upload" role="button" style="background-color:rgb(58,89,98) !important">Back to upload</a></p>
+        </div>
+    </div>
+
+{% endblock %}
+
+

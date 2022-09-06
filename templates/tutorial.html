@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %} 
+  <h2>Learn how to use the platform for data upload and analysis</h2>
+  <p>Click following items to review detailed tutorials: </p>
+  <!--<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>-->
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col">
+        <p>
+          <button class="btn btn-primary" style="width: 63%; background-color:rgb(58,89,98) !important" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+            Download Input Template
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample1">
+          <div class="card card-body">
+              <img src="/static/Tutorial Template Download.png" class="img-fluid" >
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="row mt-3">
+      <div class="col">
+        <p>
+          <button class="btn btn-primary" style="width: 63%; background-color:rgb(58,89,98) !important" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+            Contribution Template Input Requirements
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample2">
+          <div class="card card-body">
+            <img src="/static/Tutorial Input Requirements.png" class="img-fluid" >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <p>
+          <button class="btn btn-primary" style="width: 63%; background-color:rgb(58,89,98) !important" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+            Upload to FD-CIA
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample3">
+          <div class="card card-body">
+            <img src="/static/Tutorial Upload.png" class="img-fluid" >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <p>
+          <button class="btn btn-primary" style="width: 63%; background-color:rgb(58,89,98) !important" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
+            FD-CIA Power BI
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample4">
+          <div class="card card-body">
+            <img src="/static/Tutorial PBI.png" class="img-fluid" >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <p>
+          <button class="btn btn-primary" style="width: 63%; background-color:rgb(58,89,98) !important" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
+            Demo Video
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample4">
+          <div class="card card-body">
+            <h4 class="card-title">Demonstration of FD-CIA in 1 minute</h5>
+              <p class="card-text">This is a general demonstration to LEGO platform</p>
+              
+          </div>
+          <div class="wrapper">
+              <video width=100% controls>
+                  <source src="static/FD-CIA.webm">
+              </video>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  
+
+
+
+
+{% endblock %}

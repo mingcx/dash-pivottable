@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %} 
+    <div class="col-sm-9">
+        <h2>MCT data platform registration</h2>
+        <br>
+        <form method=post enctype=multipart/form-data oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
+            <div class="form-group row">
+                <label for="invitecode" class="col-sm-2 col-form-label">Invite code</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="invitecode" placeholder="Invite code" name="invitecode" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="registerinputEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="registerinputEmail" placeholder="Email" name="registerinputEmail">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="RegisterPassword1" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="RegisterPassword1" placeholder="Password" name="up">
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="RegisterPassword2" class="col-sm-2 col-form-label">Confirm Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="RegisterPassword2" placeholder="Password" name="up2">
+                </div>
+              </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" style="background-color:rgb(58,89,98) !important">Register</button>
+              </div>
+            </div>
+          </form>
+    </div>
+
+{% endblock %}

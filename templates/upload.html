@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %} 
+    <div class="col-sm-9">
+        <h2>Upload FD-CIA to Database</h2>
+        <!-- <p>Please enter your championx email and special password for FD-CIA </p> -->
+        <!--<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>-->
+        <p>
+            <form method=post enctype=multipart/form-data oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
+                <!-- <div class="form-group row">
+                    <label for="registerinputEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="registerinputEmail" placeholder="Email" name="registerinputEmail">
+                    </div>
+                </div> -->
+                
+                
+                <div class="form-group">
+                    <!-- <div class="form-group row">
+                        <label for="registerinputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="upload_email">
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted"> &nbsp &nbsp Your email address will be saved in the uploaded record</small>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="RegisterPassword1" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="upload_password">
+                        </div>
+                      </div> -->
+                    <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="upload_email"> -->
+                    <!-- <small id="emailHelp" class="form-text text-muted">Your email address will be saved in the uploaded record</small>
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="upload_password"> -->
+                    <br>
+                    <!-- <fieldset class="form-group row">
+                        <legend class="col-md-12">Please indicate how to proceed if the uploaded project(s) already exist in database </legend>
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="replacedatabase" checked>
+                                Replace the existing data in the database for this field with this new uploaded data
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="keepdatabase">
+                                Ignore existing data in the database for this field and add this as new data
+                                </label>
+                            </div>
+                            <div class="form-check disabled">
+                                <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="showconflict">
+                                Check and show existing projects
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset> -->
+                    <br>
+                    <label for="exampleFormControlFile1">Upload Test Excel</label>
+                    <input type=file name=file>
+                    <input type=submit value=Upload>
+                </div>
+            </form>
+        </p>
+    </div>
+
+{% endblock %}

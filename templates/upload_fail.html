@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %} 
+    <div class="col-sm-9">
+
+        <h2>        
+        {% if errortype=="input" %} 
+            Please input complete email and password
+        {% endif %}
+        {% if errortype=="nofile" %} 
+            Please upload file
+        {% endif %}
+        {% if errortype=="wrongpassword" %} 
+            Wrong email and password does not match
+        {% endif %}
+        </h2>
+        <!-- <p>Upload complelted</p> -->
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %} 
+    <div class="col-sm-9">
+
+        <h4>        
+        {% if output_case=="input" %} 
+            Please input complete email and password
+        {% endif %}
+
+        {% if output_case=="nofile" %} 
+            Please upload file
+        {% endif %}
+        
+        {% if output_case=="wrongpassword" %} 
+            Email and password does not match
+        {% endif %}
+
+        {% if output_case=="nouser" %} 
+            Email address not registered
+        {% endif %}
+
+        {% if output_case=="unmatch" %} 
+            Wrong password
+        {% endif %}
+
+        {% if output_case=="resetdone" %} 
+            Your password has been reset successfully!
+        {% endif %}
+
+        {% if output_case=="nofile" %} 
+            No file is attached
+        {% endif %}
+
+        {% if output_case=="noemailpassowrd" %} 
+            Please enter both email and password
+        {% endif %}
+
+        {% if output_case=="forgetpassword" %} 
+            Please email 
+            jeannine.schmid@championx.com 
+            to get a new password
+        {% endif %}
+
+        {% if output_case=="register" %} 
+            Please email 
+            jeannine.schmid@championx.com
+            to register for test uploading
+        {% endif %}
+        
+        {% if output_case=="database_error" %} 
+            Database connection/upload error. Please check your internet connection, or send you input template to ming-zhao.jin@championx.com for assistance
+        {% endif %}
+        
+        {% if output_case=="format_error" %} 
+            Input format error. Please make sure input format is correct and try again, or send you input template to ming-zhao.jin@championx.com for assistance
+        {% endif %}
+
+        {% if output_case=="unkown_error" %} 
+            Something wrong during the upload, please send you input template to ming-zhao.jin@championx.com for assistance
+        {% endif %}
+
+        {% if output_case=="no field chemical access" %} 
+            You do not have access to Field Chemical applciation, please contact jeannine.schmid@championx.com for access setup
+        {% endif %}
+        
+        
+        </h4>
+
+        <!-- <p>Upload complelted</p> -->
+
+    </div>
+
+{% endblock %}

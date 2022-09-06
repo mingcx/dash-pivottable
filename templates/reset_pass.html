@@ -1,0 +1,44 @@
+{% extends 'ci_base_v1.html' %}
+
+{% block title %}AID-X CI{% endblock %}
+{% block content %} 
+    <div class="col-sm-9">
+        <h2>Reset Password</h2>
+        <br>
+        <form method=post enctype=multipart/form-data oninput='up2.setCustomValidity(up2.value != up.value ? "New passwords do not match." : "")'>
+
+            <div class="form-group row">
+              <label for="registerinputEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="input_email" placeholder="Email" name="input_email">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="RegisterPassword1" class="col-sm-2 col-form-label">Old Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="old_pass" placeholder="Password" name="old_pass">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="RegisterPassword1" class="col-sm-2 col-form-label">New Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="new_pass_1" placeholder="Password" name="up">
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="RegisterPassword2" class="col-sm-2 col-form-label">Confirm Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="new_pass_2" placeholder="Password" name="up2">
+                </div>
+              </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" style="background-color:rgb(58,89,98) !important">Reset</button>
+              </div>
+            </div>
+          </form>
+    </div>
+
+{% endblock %}

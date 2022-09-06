@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}MCT{% endblock %}
+{% block content %}
+<div class="container">
+
+
+    <div class="card text-center">
+        <div class="card-header">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">1 minute video demo</a>
+
+                </div>
+            </nav>
+
+            <!-- <h6 class="card-title">Note: If any issue, please click "Reset" on the top right conner of Power BI report to reset previous filters</h5> -->
+        </div>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="card-body">
+                    <h4 class="card-title">Demonstration of FD-CIA in 1 minute</h5>
+                    <p class="card-text">This is a general demonstration to LEGO platform</p>
+                    
+                </div>
+                <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/FD-CIA.webm">
+                    </video>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="card-body">
+                    <h4 class="card-title">EB/REB platform</h5>
+                    <p class="card-text">How to customzie bottle test sheet by using input tool</p>
+                    <p class="card-text">Upload test sheet to Azure database</p>
+                    <p class="card-text">Use Power BI to analyze test data</p>
+                    <p class="card-text">LEGO AI for EB/REB</p>
+                    <a href="https://digitalbottletest.azurewebsites.net/login" target="_blank" class="btn btn-primary" style="width: 40%; background-color:rgb(58,89,98) !important">Link to Power BI Web App</a>
+                </div>
+                <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/LEGOV.mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="MCT" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="card-body">
+                    <h4 class="card-title">Coming soon</h5>
+                    <!-- <p class="card-text">How to customzie bottle test sheet by using input tool</p>
+                    <p class="card-text">Upload test sheet to Azure database</p>
+                    <p class="card-text">Use Power BI to analyze test data</p>
+                    <p class="card-text">LEGO AI for EB/REB</p>
+                    <a href="https://digitalbottletest.azurewebsites.net/login" target="_blank" class="btn btn-primary" style="width: 40%; background-color:rgb(58,89,98) !important">Link to Power BI Web App</a> -->
+                </div>
+                <!-- <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/LEGOV.mp4">
+                    </video>
+                </div> -->
+            </div>
+            <div class="tab-pane fade" id="PWC" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="card-body">
+                    <h4 class="card-title">Coming soon</h5>
+                    <!-- <p class="card-text">How to customzie bottle test sheet by using input tool</p>
+                    <p class="card-text">Upload test sheet to Azure database</p>
+                    <p class="card-text">Use Power BI to analyze test data</p>
+                    <p class="card-text">LEGO AI for EB/REB</p>
+                    <a href="https://digitalbottletest.azurewebsites.net/login" target="_blank" class="btn btn-primary" style="width: 40%; background-color:rgb(58,89,98) !important">Link to Power BI Web App</a> -->
+                </div>
+                <!-- <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/LEGOV.mp4">
+                    </video>
+                </div> -->
+            </div>
+            <div class="tab-pane fade" id="FD-CIA" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="card-body">
+                    <h4 class="card-title">Tutorial for FD-CIA</h5>
+                    <p class="card-text"></p>
+                    
+                </div>
+                <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/FD-CIA.webm">
+                    </video>
+                </div>
+
+                <!-- <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/LEGOV.mp4">
+                    </video>
+                </div> -->
+                <!-- <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/LEGOV.mp4">
+                    </video>
+                </div> -->
+            </div>
+            <div class="tab-pane fade" id="CI" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="card-body">
+                    <h4 class="card-title">Coming soon</h5>
+                    <!-- <p class="card-text">How to customzie bottle test sheet by using input tool</p>
+                    <p class="card-text">Upload test sheet to Azure database</p>
+                    <p class="card-text">Use Power BI to analyze test data</p>
+                    <p class="card-text">LEGO AI for EB/REB</p>
+                    <a href="https://digitalbottletest.azurewebsites.net/login" target="_blank" class="btn btn-primary" style="width: 40%; background-color:rgb(58,89,98) !important">Link to Power BI Web App</a> -->
+                </div>
+                <!-- <div class="wrapper">
+                    <video width=100% controls>
+                        <source src="static/LEGOV.mp4">
+                    </video>
+                </div> -->
+            </div>
+
+     
+
+        </div>
+    </div>
+
+  </div>
+{% endblock %}
