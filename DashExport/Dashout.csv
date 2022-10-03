@@ -1,4 +1,4 @@
-,sheetname,Date,Procedure,Test,Jar,Floc,Floc_Dosage (ppm),Coag,Coag_Dosage (ppm),Coagulant:Flocculant,Turbs,RANK,MAX,MIN,RANGE,Comment,Trub % decrease
+,Sheetname,Date,Procedure,Test,Jar,Floc,Floc_Dosage (ppm),Coag,Coag_Dosage (ppm),Coagulant:Flocculant,Turbs,RANK,MAX,MIN,RANGE,Comment,Trub % decrease
 2,Jan 2022(D),2022-01-20,standard,Jan 2022(D)_1,1,blank,0.0,blank,0.0,0 ppm:blank   0 ppm:blank,999.0,6,999.0,99.3,899.7,7767 settled faster with all coags but 7878 did give a better water quality,
 3,Jan 2022(D),2022-01-20,standard,Jan 2022(D)_1,2,7767,0.5,2537A,10.0,10 ppm:2537A   0.5 ppm:7767,613.0,4,999.0,99.3,899.7,7767 settled faster with all coags but 7878 did give a better water quality,
 4,Jan 2022(D),2022-01-20,standard,Jan 2022(D)_1,3,7767,0.5,2495,10.0,10 ppm:2495   0.5 ppm:7767,195.0,2,999.0,99.3,899.7,7767 settled faster with all coags but 7878 did give a better water quality,

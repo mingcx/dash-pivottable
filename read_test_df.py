@@ -29,7 +29,7 @@ def readtest():
     setup_condition_columns=[]
     setup_product_columns=[]
     setup_product_dosage_columns=[]
-    setup_identifier_columns=['sheetname']   #sheet name as identifier always
+    setup_identifier_columns=['Sheetname']   #sheet name as identifier always
     KPI_columns=[]
 
 
@@ -88,7 +88,7 @@ def readtest():
 
             ###add sheet name as column
             
-            sheetdf.insert(0,'sheetname',sheetname)
+            sheetdf.insert(0,'Sheetname',sheetname)
 
             sheet_df_list.append(sheetdf)
             a=1
@@ -106,7 +106,14 @@ def readtest():
             completedosagecolumnname=previous_product_column_name+'_'+setup_product_dosage_columns[0]
             setup_product_dosage_dic[previous_product_column_name]=completedosagecolumnname
             concated_df.rename({columnname: completedosagecolumnname}, axis=1, inplace=True)
+    
+    #resort so the dictionary is as same as excel input
+    resort_setup_product_dosage_dic={}
+    for column in setup_product_columns:
+        resort_setup_product_dosage_dic[column]=setup_product_dosage_dic[column]
+    setup_product_dosage_dic=resort_setup_product_dosage_dic
 
+    
     chemcial_dosage_list=[]
     for key in setup_product_dosage_dic.keys():
         chemcial_dosage_list.append(key)
@@ -116,20 +123,22 @@ def readtest():
 
     #process identifiier column
     #0 is sheet, so 1 is the primary identifier in each sheet
-    concated_df[setup_identifier_columns[1]] = concated_df["sheetname"].astype(str) +'_'+ concated_df[setup_identifier_columns[1]].astype(str)
+    concated_df[setup_identifier_columns[1]] = concated_df["Sheetname"].astype(str) +'_'+ concated_df[setup_identifier_columns[1]].astype(str)
+    
+    ###################add unit id######################
     
 
 
 
 
 
-    #########################wirte to excel: debug only##################
-    writer = pd.ExcelWriter('DashExport'+'/'+'Dashoutput.xlsx')
-    #concated_df.to_excel(writer, sheet_name='test')
-    concated_df.to_csv('DashExport'+'/'+'Dashout.csv')
-    # sheet_merged_interval_string_df.to_csv('DashExport'+'/'+'Dashout_st_Interval.csv')
-    # sheet_int_unpivotdf.to_csv('DashExport'+'/'+'finalUnpivot_int.csv')
-    ########################export debug finished#########################
+    # #########################wirte to excel: debug only##################
+    # writer = pd.ExcelWriter('DashExport'+'/'+'Dashoutput.xlsx')
+    # #concated_df.to_excel(writer, sheet_name='test')
+    # concated_df.to_csv('DashExport'+'/'+'Dashout.csv')
+    # # sheet_merged_interval_string_df.to_csv('DashExport'+'/'+'Dashout_st_Interval.csv')
+    # # sheet_int_unpivotdf.to_csv('DashExport'+'/'+'finalUnpivot_int.csv')
+    # ########################export debug finished#########################
 
     return concated_df, defaultshow_columns,setup_identifier_columns, setup_condition_columns,KPI_columns, setup_product_dosage_dic
 
