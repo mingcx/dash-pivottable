@@ -320,7 +320,7 @@ filterrow2_list.append(html.Div([
             options=dff[second_chemical_column].unique(),
             value=[],
             multi=True,
-            id='chemical-2-filter'
+            id='chemical_2_filter'
         )
         ],style={'width': '65%', 'display': 'inline-block',"vertical-align":"bottom"}
         ))
@@ -361,11 +361,11 @@ finallist.append(dbc.Alert(id='tbl_out'))
 
 finallist.append(html.Div([
             dcc.Tabs(id="tabs-styled-with-inline", value='tab-1', children=[
-                dcc.Tab(label='Data Analytics', value='analytics_tab', style=tab_style, selected_style=tab_selected_style),
-                dcc.Tab(label='Graph', value='graph_tab', style=tab_style, selected_style=tab_selected_style),
+                dcc.Tab(label='Analytics and Visualization', value='analytics_tab', style=tab_style, selected_style=tab_selected_style),
                 dcc.Tab(label='Chemisty', value='chemisty_tab', style=tab_style, selected_style=tab_selected_style),
                 dcc.Tab(label='Sales/Supply', value='SS_tab', style=tab_style, selected_style=tab_selected_style),
                 dcc.Tab(label='Machine Learning', value='AI_tab', style=tab_style, selected_style=tab_selected_style),
+                dcc.Tab(label='Design of Experiment', value='DOE_tab', style=tab_style, selected_style=tab_selected_style)
             ], style=tabs_styles),
             html.Div(id='tabs-content-inline')
         ],
@@ -408,10 +408,17 @@ def render_content(activecell,filtered_data,selectedtab):
         sheet_unpivotdf=pd.melt(filtered_dataframe, id_vars=['uniqueID'], value_vars=KPI_columns)
         sheet_int_unpivotdf = pd.merge(filtered_dataframe, sheet_unpivotdf, how="right", on='uniqueID')
         sheet_int_unpivotdf.rename(columns={'variable': 'KPI', 'value': 'KPI_value'}, inplace=True)
+        
+        #convert none KPI columns to string
+        for columnname in sheet_int_unpivotdf:
+            if columnname not in KPI_columns:
+                sheet_int_unpivotdf[columnname] = sheet_int_unpivotdf[columnname].astype(str)
 
         ##################to list of list
         columnname_list=sheet_int_unpivotdf.columns.tolist()
-        merged_list_list=sheet_int_unpivotdf.values.tolist()
+        #merged_list_list=sheet_int_unpivotdf.values.tolist()
+        merged_list_list=list(map(list, sheet_int_unpivotdf.itertuples(index=False)))
+        
         merged_list_list.insert(0,columnname_list)
         #######################################
         # filtered_dataframe=pd.DataFrame(filtered_data)
@@ -497,7 +504,7 @@ def render_content(activecell,filtered_data,selectedtab):
 #################################active cell call back
 @app2.callback(
     #Output("output-graph", "children"), Input("table", "active_cell"),
-    Output('tbl_out', 'children'), 
+    Output('tbl_out', 'children'),
     Input('raw_data_table', 'active_cell'),
     Input('raw_data_table', 'data'),
 )
@@ -509,11 +516,10 @@ def cell_clicked(active_cell,currentdata):
 
 
 
-# ###########identifier filter for filters ################################## 
+# ########### filter for filters ################################## 
+# identifier options#######
 @app2.callback(
-    #Output("output-graph", "children"), Input("table", "active_cell"),
     Output('filter_identifier', 'options'), 
-    #Output('filter_identifier', 'value'),
     Input('filter_sheet', 'value')
 )
 def sheet_filter_to_pageidentifier(selectedsheets_list):
@@ -523,43 +529,120 @@ def sheet_filter_to_pageidentifier(selectedsheets_list):
     else:
         return dff[setup_identifier_columns[1]].unique()
 
+
+##chemcial 1 options
+@app2.callback(
+    Output('chemical_1_filter', 'options'), 
+    Input('filter_sheet', 'value'),
+    Input('filter_identifier', 'value')
+)
+def filter_to_chemical1_options(selectedsheets_list,selected_identifier_list):
+    if selectedsheets_list:
+        localfilterdf=dff[dff[setup_identifier_columns[0]].isin(selectedsheets_list)]
+    else:
+        localfilterdf=dff
+
+    if selected_identifier_list:
+        localfilterdf=localfilterdf[localfilterdf[setup_identifier_columns[1]].isin(selected_identifier_list)]
+    
+    return localfilterdf[first_chemical_column].unique()
+
+##chemcial 2 options
+@app2.callback(
+    Output('chemical_2_filter', 'options'), 
+    Input('filter_sheet', 'value'),
+    Input('filter_identifier', 'value'),
+    Input('chemical_1_filter', 'value'),
+)
+def filter_to_chemical2_options(selectedsheets_list,selected_identifier_list,selected_chemical1_list):
+    if selectedsheets_list:
+        localfilterdf=dff[dff[setup_identifier_columns[0]].isin(selectedsheets_list)]
+    else:
+        localfilterdf=dff
+
+    if selected_identifier_list:
+        localfilterdf=localfilterdf[localfilterdf[setup_identifier_columns[1]].isin(selected_identifier_list)]
+
+    if selected_chemical1_list:
+        localfilterdf=localfilterdf[localfilterdf[first_chemical_column].isin(selected_chemical1_list)]
+    
+    return localfilterdf[second_chemical_column].unique()
+
+
+
+# chemical 1#######
+
+
 # ###########filter for filters finished ################################## 
 
 
 
 # ###########check all identifiers ################################## 
 @app2.callback(
-    #Output("output-graph", "children"), Input("table", "active_cell"),
-    Output('filter_identifier', 'value'), 
-    #Output('filter_identifier', 'value'),
-    Input('filter_sheet', 'value'),
-    Input('identifier_all_check', 'value')
+    Output('filter_sheet', 'value'), 
+    Input('sheet_all_check', 'value'),
+    Input('filter_sheet', 'options')
 )
-def select_all_identifiers(selectedsheets_list,checkedvalue):
-    if 'All' in checkedvalue:
-        if selectedsheets_list:
-            filterdf_fromsheet=dff[dff[setup_identifier_columns[0]].isin(selectedsheets_list)]  
-            #print(filterdf_fromsheet[setup_identifier_columns[1]].unique())
-            return filterdf_fromsheet[setup_identifier_columns[1]].unique()
-        else:
-            return dff[setup_identifier_columns[1]].unique()
-    else:
+def select_all_sheets(checkedvalue,sheetoptions):
+    if checkedvalue is None:
         return []
+    else: 
+        if 'All' in checkedvalue:
+            return sheetoptions
+        else:
+            return []
+
 
 @app2.callback(
-    #Output("output-graph", "children"), Input("table", "active_cell"),
-    Output('filter_sheet', 'value'), 
-    #Output('filter_identifier', 'value'),
-    #Input('filter_sheet', 'value'),
-    Input('sheet_all_check', 'value')
+    Output('filter_identifier', 'value'), 
+    Input('identifier_all_check', 'value'),
+    Input('filter_identifier', 'options')
 )
-def select_all_sheets(checkedvalue):
-    if 'All' in checkedvalue:
-        return dff[setup_identifier_columns[0]].unique()
-    else:
+def select_all_identifiers(checkedvalue,identifieroptions):
+    if checkedvalue is None:
         return []
+    else:  
+        if 'All' in checkedvalue:
+            return identifieroptions
+        else:
+            return []
+
+
+###chemcial 1 check all###################
+@app2.callback(
+    Output('chemical_1_filter', 'value'), 
+    Input('chemical_1_check', 'value'),
+    Input('chemical_1_filter', 'options')
+)
+def select_all_chemical1(checkedvalue,identifieroptions):
+    if checkedvalue is None:
+        return []
+    else:  
+        if 'All' in checkedvalue:
+            return identifieroptions
+        else:
+            return []
+
+####chemcial 2 check all###################
+@app2.callback(
+    Output('chemical_2_filter', 'value'), 
+    Input('chemical_2_check', 'value'),
+    Input('chemical_2_filter', 'options')
+)
+def select_all_chemical2(checkedvalue,identifieroptions):
+    if checkedvalue is None:
+        return []
+    else: 
+        if 'All' in checkedvalue:
+            return identifieroptions
+        else:
+            return []
     
 # ###########filter for filters finished ################################## 
+
+
+
+
 
 
 
@@ -568,24 +651,28 @@ def select_all_sheets(checkedvalue):
     Output("raw_data_table", "data"), 
     Input('filter_sheet', 'value'),
     Input('filter_identifier', 'value'),
+    Input('chemical_1_filter', 'value'),
+    Input('chemical_2_filter', 'value')
     #Output('filter_identifier', 'value'),
 )
-def raw_data_table_filter(sheet_filter_list,identifier_filter_list):
-    print(sheet_filter_list,identifier_filter_list)
+def raw_data_table_filter(sheet_filter_list,identifier_filter_list,chemical1_filter_list,chemical2_filter_list):
+    #print(sheet_filter_list,identifier_filter_list)
     if identifier_filter_list:
         raw_data_filterdf=dff[dff[setup_identifier_columns[1]].isin(identifier_filter_list)]  
-        # print (np.insert(filterdf[setup_identifier_columns[1]].unique(),0,'All'))
-        return raw_data_filterdf.to_dict("records")
 
     else:
         if sheet_filter_list:
             raw_data_filterdf=dff[dff[setup_identifier_columns[0]].isin(sheet_filter_list)]
         else:
             raw_data_filterdf=dff
-        # print (np.insert(filterdf[setup_identifier_columns[1]].unique(),0,'All'))
-        return raw_data_filterdf.to_dict("records")
 
+    if chemical1_filter_list:
+        raw_data_filterdf=raw_data_filterdf[raw_data_filterdf[first_chemical_column].isin(chemical1_filter_list)]
+    
+    if chemical2_filter_list:
+        raw_data_filterdf=raw_data_filterdf[raw_data_filterdf[second_chemical_column].isin(chemical2_filter_list)]
 
+    return raw_data_filterdf.to_dict("records")
 # ###########filter for filters finished ################################## 
 
 # ###########filter for raw data

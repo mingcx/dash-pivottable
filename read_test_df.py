@@ -14,7 +14,7 @@ def get_sheetnames_xlsx(filepath):
 
 
 def readtest():
-    filepath_excel="CL_Jartest_Data/Cl Jar test combined_template.xlsx"
+    filepath_excel="CL_Jartest_Data/Cl Jar test combined_template_Suncor2.xlsx"
     calculate_columns_sheetname='CalculatedColumns(RE)'
     setup_sheetname='Setup(RE)'
     sheetnames=get_sheetnames_xlsx(filepath_excel)
@@ -102,6 +102,8 @@ def readtest():
     for columnname in concated_df.columns:
         if columnname in setup_product_columns:
             previous_product_column_name=columnname
+            # convert to string
+            concated_df[columnname] = concated_df[columnname].astype(str)
         if columnname in setup_product_dosage_columns or (columnname.split("_")[0] in setup_product_dosage_columns):
             completedosagecolumnname=previous_product_column_name+'_'+setup_product_dosage_columns[0]
             setup_product_dosage_dic[previous_product_column_name]=completedosagecolumnname
@@ -128,7 +130,7 @@ def readtest():
     ###################add unit id######################
     
 
-
+    merged_list_list=list(map(list, concated_df.itertuples(index=False)))
 
 
 
